@@ -25,7 +25,7 @@ impl NotificationService {
         };
 
         let request_url: String = format!("{}/notification/subscribe/{}",
-            APP_CONFIG.get_publisher_root_url()m product_type_str);
+            APP_CONFIG.get_publisher_root_url(), product_type_str);
         let request = REQWEST_CLIENT
             .post(request_url.clone())
             .header("Content-Type", "application/json")
