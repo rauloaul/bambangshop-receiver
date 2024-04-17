@@ -86,4 +86,25 @@ This is the place for you to write reflections:
 
 #### Reflection Subscriber-1
 
+1. In this tutorial, we used RwLock<> to synchronise the use of Vec of Notifications. Explain why it is necessary for this case, and explain why we do not use Mutex<> instead?
+
+        
+        In Rust, RwLock allows multiple readers or one writer concurrently, beneficial for read-heavy workloads like Vec of Notifications. Mutex ensures exclusive access, suitable for scenarios with frequent writes or strict access control. Int this tutorial we choose RwLock for better performance with multiple concurrent reads, other than Mutex for strict single-threaded access or heavy write operations.
+
+2. In this tutorial, we used lazy_static external library to define Vec and DashMap as a “static” variable. Compared to Java where we can mutate the content of a static variable via a static function, why did not Rust allow us to do so?
+
+        Rust does not allow mutation of static variables directly as a safety measure to prevent data races. If we need to mutate a static variable, we can use interior mutability provided by types like Mutex or RwLock.
+
 #### Reflection Subscriber-2
+
+1. Have you explored things outside of the steps in the tutorial, for example: src/lib.rs? If not, explain why you did not do so. If yes, explain things that you have learned from those other parts of code.
+
+        I have explored the src/lib.rs file to understand the structure of the project and how the modules are connected. I learned that the lib.rs file is the entry point of the project, where we define the modules and their relationships. This file is crucial for understanding the project's architecture and how the modules interact with each other.
+
+2. Since you have completed the tutorial by now and have tried to test your notification system by spawning multiple instances of Receiver, explain how Observer pattern eases you to plug in more subscribers. How about spawning more than one instance of Main app, will it still be easy enough to add to the system?
+
+        The Observer pattern eases the process of adding more subscribers to the system because it decouples the publisher and subscriber. This means that we can easily add new subscribers without modifying the publisher. On the other hand, spawning more than one instance of the main app can be more challenging because we need to ensure that the instances are synchronized and communicate correctly. However, by using the Observer pattern, we can simplify this process by allowing the instances to subscribe to the publisher and receive notifications independently. This makes it easier to scale the system and add more instances without modifying the existing code.
+
+3. Have you tried to make your own Tests, or enhance documentation on your Postman collection? If you have tried those features, tell us whether it is useful for your work (it can be your tutorial work or your Group Project).
+
+        No, I have not tried to make my own tests or enhance documentation on the Postman collection. However, I believe that these features are useful for my work because they can help me test my code and document the API endpoints effectively. By writing tests, I can ensure that my code works as expected and identify any bugs or issues. Additionally, by enhancing the documentation on the Postman collection, I can provide clear instructions on how to use the API endpoints and make it easier for others to understand the functionality of the system.
