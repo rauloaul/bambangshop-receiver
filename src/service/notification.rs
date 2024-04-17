@@ -48,7 +48,7 @@ impl NotificationService {
 
     pub fn subscribe(product_type: &str) -> Result<SubscriberRequest> {
         let product_type_clone = String::from(product_type);
-        return thread ::spawn(move || Self::subscriber_request(product_type_clone))
+        return thread ::spawn(move || Self::subscribe_request(product_type_clone))
             .join().unwrap();
     }
 
