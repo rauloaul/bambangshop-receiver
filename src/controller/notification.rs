@@ -1,7 +1,7 @@
 use rocket::serde::json::Json;
 
 use bambangshop_receiver::Result;
-use crate::model::notification::Notification;
+use crate::model::notification::{self, Notification};
 use crate::model::subscriber::SubscriberRequest;
 use crate::service::notification::NotificationService;
 
@@ -18,5 +18,5 @@ pub fn unsubscribe(product_type: &str) -> Result<Json<SubscriberRequest>> {
     return match NotificationService::unsubscribe(product_type){
         Ok(f) => Ok(Json::from(f)),
         Err(e) => Err(e)
-    }
+    };
 }
